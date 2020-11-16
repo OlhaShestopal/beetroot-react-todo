@@ -1,0 +1,25 @@
+.todo-form {
+  display: flex;
+}
+
+.todo-form__textfield {
+  border: none;
+  border-bottom: 2px solid rgba($color: #000, $alpha: 0.5);
+  font-size: 16px;
+  padding: 10px;
+
+  outline: none;
+  flex: 1 0;
+}
+
+.todo-form__submit {
+  width: 60px;
+  height: 60px;
+
+  border: none;
+  outline: none;
+  background: url("../../../../assets/create.svg") center center no-repeat;
+  background-size: 25px;
+  margin-left: 15px;
+  cursor: pointer;
+}
