@@ -1,7 +1,12 @@
 import { createRef } from 'react';
+
+import { IconButton } from '../../../shared/IconButton';
+import { Icon } from '../../../shared/Icon';
+
 import "./todoForm.scss";
 
-function TodoForm() {
+function TodoForm(props) {
+  const { handleCreate } = props;
   const input = createRef(null);
 
   const handleSubmit = e => {
@@ -12,7 +17,7 @@ function TodoForm() {
       // Show error...
       return;
     }
-
+    handleCreate(value);
     e.target.reset()
   }
 
@@ -28,7 +33,9 @@ function TodoForm() {
         className="todo-form__textfield"
       />
 
-      <button className="todo-form__submit" />
+      <IconButton className="todo-form__submit">
+        <Icon icon="create" />
+      </IconButton>
     </form>
   )
 }

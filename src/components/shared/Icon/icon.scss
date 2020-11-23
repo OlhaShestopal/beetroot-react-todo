@@ -1,0 +1,16 @@
+.icon {
+  display: inline-block;
+
+  width: 25px;
+  height: 25px;
+  background: center center no-repeat;
+  background-size: 25px;
+}
+
+.icon--create {
+  background-image: url("../../../assets/vector/create.svg");
+}
+
+.icon--delete {
+  background-image: url("../../../assets/vector/delete.svg");
+}
