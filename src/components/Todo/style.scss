@@ -1,0 +1,32 @@
+.todo {
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100%;
+  padding: 15px 30px;
+}
+
+.todo__loader {
+  position: fixed;
+  left: 0;
+  top: -9px;
+
+  width: 100%;
+}
+
+.todo__container {
+  flex: 1 0;
+  overflow-y: auto;
+
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.todo__list {
+  margin: 0;
+  padding: 0;
+}
+
+.todo__empty-message {
+  text-align: center;
+  margin: auto;
+}

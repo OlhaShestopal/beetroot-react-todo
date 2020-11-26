@@ -1,9 +1,8 @@
 import { createRef } from 'react';
 
-import { IconButton } from '../../../shared/IconButton';
-import { Icon } from '../../../shared/Icon';
+import { Button } from '../../../shared/Button';
 
-import "./todoForm.scss";
+import "./style.scss";
 
 function TodoForm(props) {
   const { handleCreate } = props;
@@ -26,16 +25,17 @@ function TodoForm(props) {
       className="todo-form"
       onSubmit={handleSubmit}
     >
-      <input
-        type="text"
-        name="todo"
-        ref={input}
-        className="todo-form__textfield"
-      />
+      <label className="matter-textfield-standard todo-form__textfield">
+        <input placeholder="" name="todo" ref={input} />
+        <span>New todo</span>
+      </label>
 
-      <IconButton className="todo-form__submit">
-        <Icon icon="create" />
-      </IconButton>
+      <Button
+        type="outlined"
+        className="todo-form__submit"
+      >
+        Create
+      </Button>
     </form>
   )
 }

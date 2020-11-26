@@ -1,0 +1,12 @@
+.todo-form {
+  display: flex;
+  align-items: center;
+}
+
+.todo-form__textfield {
+  flex: 1 0;
+}
+
+.todo-form__submit {
+  margin-left: 25px;
+}

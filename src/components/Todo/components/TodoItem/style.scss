@@ -1,0 +1,17 @@
+.todo-item {
+  display: flex;
+  align-items: center;
+
+  &:not(:first-child) {
+    margin-top: 15px;
+  }
+}
+
+.todo-item__descr {
+  flex: 1 0;
+  margin: 0 10px;
+}
+
+.todo-item__descr--completed {
+  text-decoration: line-through;
+}

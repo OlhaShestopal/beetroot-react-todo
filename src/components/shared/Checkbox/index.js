@@ -1,20 +1,11 @@
-import "./checkbox.scss";
-
 function Checkbox(props) {
-  const { className, ...otherProps } = props;
-
   return (
-    <label className={`checkbox ${className} ${props.checked && "checked"}`}>
+    <label className="matter-checkbox">
       <input
-        {...otherProps}
+        {...props}
         type="checkbox"
-        className="checkbox__control"
       />
-      {props.children &&
-        <span className="checkbox__label">
-          {props.children}
-        </span>
-      }
+      <span>{props.children}</span>
     </label>
   )
 }
