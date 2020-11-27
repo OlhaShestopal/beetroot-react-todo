@@ -33,6 +33,7 @@ function TodoForm(props) {
       <Button
         type="outlined"
         className="todo-form__submit"
+        nativeType="submit"
       >
         Create
       </Button>
