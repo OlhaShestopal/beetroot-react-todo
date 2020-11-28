@@ -2,7 +2,7 @@
   display: flex;
   flex-flow: column nowrap;
   height: 100%;
-  padding: 15px 30px;
+  padding-bottom: var(--frame-offset-y);
 }
 
 .todo__loader {
@@ -19,6 +19,8 @@
 
   display: flex;
   flex-flow: column nowrap;
+
+  padding: var(--frame-offset-y) var(--frame-offset-x) 0;
 }
 
 .todo__list {
