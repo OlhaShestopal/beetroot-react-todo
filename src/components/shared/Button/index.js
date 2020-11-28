@@ -1,15 +1,9 @@
-function Button(props) {
+function Button({ type = 'contained', nativeType = 'button', color = 'primary', ...props }) {
   // Classes: matter-primary, matter-secondary, matter-error, matter-warning, matter-success
-  const {
-    type = 'contained',
-    nativeType = 'button',
-    color = 'primary',
-    ...otherProps
-  } = props;
 
   return (
     <button
-      {...otherProps}
+      {...props}
       type={nativeType}
       className={`matter-button-${type} matter-${color} ${props.className}`}
     >

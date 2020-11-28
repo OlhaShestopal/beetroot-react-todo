@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import { Button } from '../../../shared/Button';
+import { Input as CustomInput } from '../../../shared/Input';
 
 import "./style.scss";
 
@@ -34,20 +35,15 @@ function TodoForm(props) {
       className="todo-form"
       onSubmit={handleSubmit}
     >
-      <div className="todo-form__textfield">
-        <label className={`matter-textfield-standard ${hasError && 'matter-error'}`}>
-          <input
-            placeholder=" "
-            name="todo"
-            onInput={handleUpdate}
-            onBlur={() => setError(false)}
-          />
-          <span>New todo</span>
-        </label>
-        {hasError && <span className="error-message matter-error-text">
-          Your todo should be contain minimum 1 letter 😡
-        </span>}
-      </div>
+      <CustomInput
+        className="todo-form__textfield"
+        name="todo"
+        onInput={handleUpdate}
+        onBlur={() => setError(false)}
+        errorMessage={hasError && "Your todo should be contain minimum 1 letter 😡"}
+      >
+        New todo
+      </CustomInput>
 
       <Button
         type="outlined"
