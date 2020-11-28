@@ -3,13 +3,13 @@ function Button(props) {
   const {
     type = 'contained',
     nativeType = 'button',
-    color = 'primary'
+    color = 'primary',
+    ...otherProps
   } = props;
-
 
   return (
     <button
-      {...props}
+      {...otherProps}
       type={nativeType}
       className={`matter-button-${type} matter-${color} ${props.className}`}
     >

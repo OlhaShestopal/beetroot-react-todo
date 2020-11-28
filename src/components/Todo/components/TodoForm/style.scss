@@ -6,6 +6,19 @@
 
 .todo-form__textfield {
   flex: 1 0;
+  padding-bottom: 35px;
+  position: relative;
+
+  label {
+    width: 100%;
+  }
+}
+
+.error-message {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  font-size: 13px;
 }
 
 .todo-form__submit {

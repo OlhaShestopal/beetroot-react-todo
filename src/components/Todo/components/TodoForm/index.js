@@ -1,4 +1,4 @@
-import { createRef } from 'react';
+import { useState } from 'react';
 
 import { Button } from '../../../shared/Button';
 
@@ -6,18 +6,27 @@ import "./style.scss";
 
 function TodoForm(props) {
   const { handleCreate } = props;
-  const input = createRef(null);
+
+  const [hasError, setError] = useState(false);
+  const [value, setValue] = useState("");
 
   const handleSubmit = e => {
-    e.preventDefault()
-    const { value } = input.current;
+    e.preventDefault();
 
     if (value.trim().length === 0) {
-      // Show error...
+      setError(true);
       return;
     }
+
     handleCreate(value);
-    e.target.reset()
+    e.target.reset();
+  }
+
+  const handleUpdate = e => {
+    if (hasError) {
+      setError(false);
+    }
+    setValue(e.target.value);
   }
 
   return (
@@ -25,15 +34,25 @@ function TodoForm(props) {
       className="todo-form"
       onSubmit={handleSubmit}
     >
-      <label className="matter-textfield-standard todo-form__textfield">
-        <input placeholder="" name="todo" ref={input} />
-        <span>New todo</span>
-      </label>
+      <div className="todo-form__textfield">
+        <label className={`matter-textfield-standard ${hasError && 'matter-error'}`}>
+          <input
+            placeholder=" "
+            name="todo"
+            onInput={handleUpdate}
+            onBlur={() => setError(false)}
+          />
+          <span>New todo</span>
+        </label>
+        {hasError && <span className="error-message matter-error-text">
+          Your todo should be contain minimum 1 letter 😡
+        </span>}
+      </div>
 
       <Button
         type="outlined"
         className="todo-form__submit"
-        native-type="submit"
+        nativeType="submit"
       >
         Create
       </Button>
