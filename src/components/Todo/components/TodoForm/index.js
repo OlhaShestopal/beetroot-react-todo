@@ -1,15 +1,23 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Button } from '../../../shared/Button';
-import { Input as CustomInput } from '../../../shared/Input';
+import { Input } from '../../../shared/Input';
 
 import "./style.scss";
 
 function TodoForm(props) {
-  const { handleCreate } = props;
+  const { handleCreate, handleUpdate, selectedTodo } = props;
 
   const [hasError, setError] = useState(false);
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(
+    selectedTodo ? selectedTodo.description : ''
+  );
+
+  useEffect(() => {
+    if (selectedTodo !== null) {
+      setValue(selectedTodo.description);
+    }
+  }, [selectedTodo])
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -19,11 +27,19 @@ function TodoForm(props) {
       return;
     }
 
-    handleCreate(value);
-    e.target.reset();
+    if (selectedTodo) {
+      handleUpdate({
+        ...selectedTodo,
+        description: value
+      });
+    } else {
+      handleCreate(value);
+    }
+
+    setValue('');
   }
 
-  const handleUpdate = e => {
+  const handleInput = e => {
     if (hasError) {
       setError(false);
     }
@@ -35,22 +51,23 @@ function TodoForm(props) {
       className="todo-form"
       onSubmit={handleSubmit}
     >
-      <CustomInput
+      <Input
         className="todo-form__textfield"
         name="todo"
-        onInput={handleUpdate}
+        value={value}
+        onInput={handleInput}
         onBlur={() => setError(false)}
         errorMessage={hasError && "Your todo should be contain minimum 1 letter 😡"}
       >
         New todo
-      </CustomInput>
+      </Input>
 
       <Button
         type="outlined"
         className="todo-form__submit"
         nativeType="submit"
       >
-        Create
+        {!selectedTodo ? 'Create' : 'Edit'}
       </Button>
     </form>
   )

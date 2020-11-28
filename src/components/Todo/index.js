@@ -11,6 +11,7 @@ import "./style.scss";
 
 function Todo() {
   const [todos, setTodos] = useState({})
+  const [selectedTodo, setSelectedTodo] = useState(null);
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -52,6 +53,10 @@ function Todo() {
       ...todos,
       [todo.id]: todo
     });
+
+    if (selectedTodo) {
+      setSelectedTodo(null);
+    }
   }
 
   return (
@@ -69,6 +74,7 @@ function Todo() {
                       <TodoItem
                         handleDelete={deleteTodo}
                         handleUpdate={updateTodo}
+                        handleSelect={setSelectedTodo}
                         todo={todo}
                         key={todo.id}
                       />)
@@ -80,7 +86,11 @@ function Todo() {
         }
       </div>
 
-      <TodoForm handleCreate={createTodo} />
+      <TodoForm
+        handleCreate={createTodo}
+        handleUpdate={updateTodo}
+        selectedTodo={selectedTodo}
+      />
     </div>
   )
 }
