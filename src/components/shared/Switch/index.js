@@ -1,12 +1,12 @@
-function Switch(props) {
+function Switch({ children, ...props }) {
   return (
-    <label class="matter-switch">
+    <label className="matter-switch">
       <input
         {...props}
         type="checkbox"
         role="switch"
       />
-      <span>{props.children}</span>
+      <span>{children}</span>
     </label>
   )
 }

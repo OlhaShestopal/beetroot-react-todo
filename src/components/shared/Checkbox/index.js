@@ -1,11 +1,11 @@
-function Checkbox(props) {
+function Checkbox({ children, ...props }) {
   return (
     <label className="matter-checkbox">
       <input
         {...props}
         type="checkbox"
       />
-      <span>{props.children}</span>
+      <span>{children}</span>
     </label>
   )
 }

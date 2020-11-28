@@ -19,16 +19,20 @@
 
   display: flex;
   flex-flow: column nowrap;
-
-  padding: var(--frame-offset-y) var(--frame-offset-x) 0;
 }
 
 .todo__list {
   margin: 0;
-  padding: 0;
+  padding: 0 var(--frame-offset-x);
 }
 
 .todo__empty-message {
   text-align: center;
   margin: auto;
+}
+
+.todo__header {
+  margin-bottom: 25px;
+  border-bottom: 1px solid rgba(var(--matter-onsurface-rgb, 0, 0, 0), 0.6);
+  padding: var(--frame-offset-y) var(--frame-offset-x);
 }
