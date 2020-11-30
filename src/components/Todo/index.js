@@ -6,7 +6,7 @@ import { Switch } from '../shared/Switch';
 import { TodoForm } from './components/TodoForm';
 import { TodoItem } from './components/TodoItem';
 import { exclude } from './lib/exclude';
-import * as api from '../../api/todos';
+// import * as api from '../../api/todos';
 
 import "./style.scss";
 
@@ -18,8 +18,15 @@ function Todo() {
   const [isCompleted, setCompleted] = useState(false);
 
   useEffect(() => {
-    fetchTodos();
-  }, [])
+    fetch('https://jsonplaceholder.typicode.com/todos/', {
+      method: "GET",
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+      })
+      .finally(() => setLoading(false))
+  }, []);
 
   useEffect(() => {
     const items = Object.values(todos);
@@ -30,24 +37,16 @@ function Todo() {
       )
     } else {
       setFilteredTodos(
-        items.filter(item => item.isCompleted)
+        items.filter(item => item.completed)
       )
     }
   }, [isCompleted, todos])
 
-  const fetchTodos = async () => {
-    setLoading(true)
-    const response = await api.fetchTodos()
-    setTodos(response);
-    setLoading(false)
-  }
-
-  const createTodo = (description) => {
+  const createTodo = (title) => {
     const todo = {
-      description,
+      title,
       id: nanoid(),
-      isCompleted: false,
-      timestamp: Date.now()
+      completed: false,
     };
 
     setTodos({
