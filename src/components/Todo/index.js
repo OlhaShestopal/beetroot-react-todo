@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import { Loader } from '../shared/Loader';
 import { Switch } from '../shared/Switch';
@@ -16,12 +16,14 @@ function Todo() {
   const [isLoading, setLoading] = useState(true);
   const [isCompleted, setCompleted] = useState(false);
 
+  const container = useRef(null);
+
   useEffect(() => {
     fetchTodos();
   }, []);
 
   useEffect(() => {
-    const items = Object.values(todos);
+    const items = Object.values(todos).sort((a, b) => b.timestamp - a.timestamp);
 
     if (!isCompleted) {
       setFilteredTodos(
@@ -80,7 +82,7 @@ function Todo() {
   return (
     <div className="todo">
       {isLoading && <Loader className="todo__loader" />}
-      <div className="todo__container">
+      <div className="todo__container" ref={container}>
         {
           !isLoading &&
           <>
