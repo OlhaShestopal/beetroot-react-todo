@@ -83,6 +83,7 @@ function Todo() {
     <div className="todo">
       {isLoading && <Loader className="todo__loader" />}
       <div className="todo__container" ref={container}>
+{/*для чого на контейнер ref?*/}
         {
           !isLoading &&
           <>
